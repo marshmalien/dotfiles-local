@@ -4,19 +4,16 @@ fancy_echo "Upgrading Homebrew formulae..."
 brew upgrade
 
 brew bundle --file=- <<EOF
-brew "cmake"
-brew "neovim/neovim/neovim"
 brew "tree"
 
-cask "1password"
 cask "docker"
 cask "google-chrome"
 cask "iterm2"
-cask "kindle"
 cask "macdown"
 cask "pomotodo"
 cask "slack"
 cask "spectacle"
+cask "visual-studio-code"
 EOF
 
 fancy_echo "Cleaning up old Homebrew formulae..."
@@ -25,18 +22,6 @@ brew cask cleanup
 
 fancy_echo "Install Prettier for JavaScript code formatting..."
 yarn global add prettier
-
-fancy_echo "Install Rubocop to lint the Ruby..."
-gem_install_or_update 'rubocop'
-
-fancy_echo "Configure Neovim..."
-gem_install_or_update 'neovim'
-pip install neovim
-
-if [ ! -r "$HOME/.config/nvim" ]; then
-  ln -s ~/.vim ~/.config/nvim
-  ln -s ~/.vimrc ~/.config/nvim/init.vim
-fi
 
 if [ -r "$HOME/.rcrc" ]; then
   fancy_echo "Updating dotfiles..."
